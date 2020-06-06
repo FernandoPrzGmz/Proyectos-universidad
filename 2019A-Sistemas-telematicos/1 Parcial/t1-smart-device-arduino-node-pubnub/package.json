@@ -1,0 +1,18 @@
+{
+  "name": "t1-smart-device-arduino-node-pubnub",
+  "version": "1.0.0",
+  "description": "---\r NOTE: El contenido de este readme pertenece es un respaldo al contenido de la pagina: https://code.tutsplus.com/tutorials/how-to-create-a-smart-device-with-arduino-and-nodejs-using-pubnub--cms-25508",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firmata": "^2.0.0",
+    "johnny-five": "^1.0.0",
+    "pubnub": "^3.7.15",
+    "serialport": "^7.1.3"
+  }
+}

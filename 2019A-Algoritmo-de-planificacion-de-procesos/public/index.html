@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Planeación de procesos</title>
+
+  <!-- Se importa el CDN de React -->
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <!-- Se Babel -->
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+</head>
+<body>
+  <div id="root"></div>
+<script type="text/babel">
+
+const Row = (props) => {
+  return (
+    <tr>
+      <th scope="row">{props.etiqueta}</th>
+      <td>{props.tiempoLlegada}</td>
+      <td>{props.t}</td>
+      <td>{props.prioridad}</td>
+      
+      <td>{props.F}</td>
+      <td>{props.T}</td>
+      <td>{props.W}</td>
+      <td>{props.P}</td>
+    </tr>
+  );
+}
+
+class Table extends React.Component {
+  // Solo se ejecuta una vez
+  constructor(props) {
+    super(props);
+    this.state = {
+      // Datos importantes para el algoritmo
+      algoritmo : 'FIFO ',
+      quantum   : null,
+      procesos  : [],
+
+      // Valores del futuro proceso a añadir
+      _etiqueta      : '',
+      _tiempoLlegada : null,
+      _t             : null,
+      _prioridad     : Number.MAX_SAFE_INTEGER,
+      
+      // Se calculara cuando se ejecute el algoritmo 
+      promedioT : null,
+      promedioW : null,
+      promedioP : null,
+      // Resultado
+      result: null,
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  
+
+  handleClick(e) {
+    // Url del servidor
+    const fetchURL = 'http://localhost:3000/algo';
+    
+    // Tipo de boton
+    switch (e.target.name) {
+      case 'AddBtn':
+        console.log('Añadir proceso');
+        this.setState(prevState => ({
+          procesos: [...prevState.procesos, {
+            etiqueta      : this.state._etiqueta,
+            tiempoLlegada : parseInt(this.state._tiempoLlegada),
+            t             : parseInt(this.state._t),
+            prioridad     : parseInt(this.state._prioridad),
+            metadata      : { indexesTimeline : [] }
+          }]
+        }))
+        break;
+      
+      case 'RunBtn':
+        fetch(fetchURL, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            algoritmo: this.state.algoritmo,
+            quantum  : this.state.quantum,
+            procesos : this.state.procesos
+          })
+        })
+        .then(res => res.json())
+        .then(
+          (result) => {
+            this.setState({
+              isLoaded: true,
+              result,
+              
+              promedioT: result.promedioT, 
+              promedioW: result.promedioW, 
+              promedioP: result.promedioP, 
+              procesos : result.procesos
+            });
+          },
+          (error) => {
+            console.log(error);
+            this.setState({
+              isLoaded: true,
+              error
+            });
+          }
+        );
+        break;
+    
+      default:
+        break;
+    }
+  }
+  handleChange(e){
+    this.setState({
+      [e.target.name] : e.target.value
+    });
+  }
+
+  render() {
+    return (
+      <div className="container" style={{marginTop: '50px'}}>
+        <h1>Algoritmos de planificación de procesos: {this.state.algoritmo}</h1>
+        <div className="row">
+          <div className="col-md-3"></div>
+          <div className="col-md-6">
+            <div>
+              <fieldset className="">
+                <div className="row">
+                  <legend className="col-form-label col-sm-2 pt-0">Algoritmo</legend>
+                  <div className="col-sm-10">
+                    <div className="form-group">
+                      <select name="algoritmo" className="form-control" onChange={this.handleChange}>
+                        <option value="FIFO">FIFO - First Input First Output</option>
+                        <option value="SJF">SJF - Shortest Job First</option>
+                        <option value="SRT">SRT - Shortest Remaining Time</option>
+                        <option value="PRIORIDADES">Prioridades</option>
+                        <option value="ROUND-ROBIN">Round Robin</option>
+                      </select>
+                    </div>
+                    
+                  </div>
+                </div>
+              </fieldset>
+              {
+                (this.state.algoritmo =='ROUND-ROBIN') ?
+                  (<div className="form-group row">
+                    <label htmlFor="quantum" className="col-sm-2 col-form-label">Quantum {this.state.quantum}</label>
+                    <div className="col-sm-10">
+                      <input onChange={this.handleChange} type="text" className="form-control" name="quantum" placeholder="Quantum"/>
+                    </div>
+                  </div>) : ''
+              }
+
+
+              <hr/>
+              <div className="form-group row">
+                <label htmlFor="_etiqueta" className="col-sm-2 col-form-label">Etiqueta</label>
+                <div className="col-sm-10">
+                  <input onChange={this.handleChange} type="text" className="form-control" name="_etiqueta" placeholder="Nombre del proceso"/>
+                </div>
+              </div>
+
+              <div className="form-group row">
+                <label htmlFor="_tiempoLlegada" className="col-sm-4 col-form-label">Tiempo de Llegada</label>
+                <div className="col-sm-8">
+                  <input onChange={this.handleChange} type="text" className="form-control" name="_tiempoLlegada" placeholder="Tiempo de Llegada"/>
+                </div>
+              </div>
+              <div className="form-group row">
+                <label htmlFor="_t" className="col-sm-4 col-form-label">Tiempos de ejecución</label>
+                <div className="col-sm-8">
+                  <input onChange={this.handleChange} type="text" className="form-control" name="_t" placeholder="Tiempos de ejecución"/>
+                </div>
+              </div>
+
+              {
+                (this.state.algoritmo =='PRIORIDADES') ?
+                  (
+                    <div className="form-group row">
+                      <label htmlFor="_prioridad" className="col-sm-4 col-form-label">Valor de prioridad</label>
+                      <div className="col-sm-8">
+                        <input onChange={this.handleChange} type="text" className="form-control" name="_prioridad" placeholder="Valor de prioridad"/>
+                      </div>
+                    </div>
+                  ) : ''
+              }
+              
+              <div className="form-group row">
+                <div className="col-md-6">
+                  <button onClick={this.handleClick} name="AddBtn" className="btn btn-primary">Añadir proceso</button>
+                </div>
+                <div className="col-md-6 right">
+                  <button onClick={this.handleClick} name="RunBtn" className="btn btn-primary">Ejecutar</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div className="col-md-3"></div>
+
+        </div>
+
+        <table className="table">
+          <thead className="thead-dark">
+            <tr>
+              <th scope="col">Proceso</th>
+              <th scope="col">Tiempo Llegada</th>
+              <th scope="col">t</th>
+              <th scope="col">Prioridad</th>
+              <th scope="col">F</th>
+              <th scope="col">T</th>
+              <th scope="col">W</th>
+              <th scope="col">P</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.state.procesos.map( function(item, i){
+                return (
+                  <Row
+                    key={i} 
+                    etiqueta={item.etiqueta}
+                    tiempoLlegada={item.tiempoLlegada}
+                    t={item.t}
+                    prioridad={item.prioridad}
+                    F={item.F}
+                    T={item.T}
+                    W={item.W}
+                    P={item.P}
+                  />);
+              })
+            }
+
+            <tr>
+              <th scope="row" colSpan="5">Promedios: </th>
+              <td>{this.state.promedioT}</td>
+              <td>{this.state.promedioW}</td>
+              <td>{this.state.promedioP}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div>
+          { /* TODO: Linea del tiempo con elementeos HTML*/}
+          { this.state.procesos.map( (item, i) =>{
+            return (
+              <div>
+                <p key={i}>Proceso: {item.etiqueta} - se ejecuta en los tiempos: {item.metadata.indexesTimeline.join()}</p>
+                
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }     
+}
+
+
+ReactDOM.render(
+  <Table />,
+  document.getElementById('root')
+);
+</script>
+</body>
+</html>

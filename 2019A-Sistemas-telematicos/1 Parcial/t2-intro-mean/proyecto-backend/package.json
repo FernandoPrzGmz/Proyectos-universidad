@@ -1,0 +1,19 @@
+{
+  "name": "proyecto-backend",
+  "version": "1.0.0",
+  "description": "Let’s say we are going to build a CRM (Customer Relations Management) tool. This would mean\r that we would need to be able to manage and handle CRUD on the users in our database. Users will\r be the main thing we will focus on when building this API and in a few chapters, Angular will build\r the frontend views that will access our Users API.\r Let’s build an API that will:\r - Handle CRUD for an item (users)\r - Have a standard URL (http://example.com/api/users and http://example.com/api/users/:user_-id)\r - Use the proper HTTP verbs to make it RESTful (GET, POST, PUT, and DELETE)\r - Return JSON data\r - Log all requests to the console",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "morgan": "~1.9.1",
+    "express": "~4.16.4",
+    "body-parser": "~1.18.3",
+    "mongoose": "~5.4.5",
+    "bcrypt-nodejs": "0.0.3"
+  },
+  "author": "",
+  "license": "ISC"
+}

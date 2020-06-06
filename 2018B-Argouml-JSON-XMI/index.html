@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>JSON Syntax Analizer</title>
+  <meta name="description" content="JSON Syntax Analizer">
+  <meta name="author" content="Daniel Campos - 130300450">
+
+  <link href="w3.css" rel="stylesheet" type="text/css" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="jquery-3.3.1.min.js"></script>
+  <script src="script.js"></script>
+  <script src="bundle.js"></script>
+</head>
+
+<body style="background-color: lightgray">
+  <div class="w3-row">
+    <h2 class="w3-center" style="text-transform: uppercase;"><b>Analizador Sintáctico JSON</b></h2>
+    <div class="w3-row w3-container">
+      <p>
+        <label class="w3-text-grey"><b>Log</b></label>
+        <input class="w3-input w3-border" id="errorLog" readonly disabled type="text">
+      </p>
+    </div>
+    <div class="w3-half w3-container">
+      <label class="w3-text-grey">Input</label>
+      <textarea rows="20" class="w3-input w3-border" id="inputArea" style="resize: none;"></textarea>
+      <br>
+      <a href="#" id="analizeBtn" class="w3-btn w3-right w3-black">Analizar</a>
+    </div>
+
+    <div class="w3-half w3-container">
+      <label class="w3-text-grey">Output</label>
+      <div id="outputArea" class="clt"></div>
+      <!-- <textarea rows="20" class="w3-input w3-border" id="outputArea" style="resize: none;" readonly></textarea> -->
+    </div>
+  </div>
+</body>
+
+</html>

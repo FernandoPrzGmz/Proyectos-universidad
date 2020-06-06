@@ -1,0 +1,38 @@
+{
+  "name": "2018b-bdd-reserva-de-laboratorios",
+  "version": "1.0.0",
+  "description": "Sistema para la reserva de laboratorios en la Universidad del Caribe.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "nodemon": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/FernandoPrz/2018b-bdd-reserva-de-laboratorios-backend.git"
+  },
+  "keywords": [
+    "nodejs",
+    "vuejs",
+    "unicaribe"
+  ],
+  "author": "Fernando Perez Gomez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/FernandoPrz/2018b-bdd-reserva-de-laboratorios-backend/issues"
+  },
+  "homepage": "https://gitlab.com/FernandoPrz/2018b-bdd-reserva-de-laboratorios-backend#README",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
+    "graphql": "^14.0.2",
+    "graphql-deduplicator": "^2.0.2",
+    "moment": "^2.22.2",
+    "mysql2": "^1.6.1",
+    "sequelize": "^4.38.1"
+  },
+  "devDependencies": {}
+}

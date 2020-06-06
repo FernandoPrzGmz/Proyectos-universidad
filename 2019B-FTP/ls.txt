@@ -1,0 +1,8 @@
+total 56
+-rwxr-xr-x 1 fernandoprzgmz fernandoprzgmz 14024 oct 27 16:48 client
+-rw-r--r-- 1 fernandoprzgmz fernandoprzgmz  3926 oct 27 15:20 client.cpp
+-rw-r--r-- 1 fernandoprzgmz fernandoprzgmz     0 oct 27 16:48 ls.txt
+-rw-r--r-- 1 fernandoprzgmz fernandoprzgmz   241 oct 21 08:27 README.md
+-rwxr-xr-x 1 fernandoprzgmz fernandoprzgmz 24048 oct 27 16:48 server
+-rw-r--r-- 1 fernandoprzgmz fernandoprzgmz  2196 oct 27 16:48 server.cpp
+drwxrwxr-x 4 fernandoprzgmz fernandoprzgmz  4096 oct 16 13:46 utils

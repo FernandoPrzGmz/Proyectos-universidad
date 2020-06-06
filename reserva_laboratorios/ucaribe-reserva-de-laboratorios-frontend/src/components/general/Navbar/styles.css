@@ -1,0 +1,7 @@
+#nav-dropdown {
+  color: white;
+  background-color: transparent;
+}
+#nav-dropdown .open{
+  background-color: transparent;
+}

@@ -1,0 +1,39 @@
+{
+  "algoritmo" : "ROUND-ROBIN",
+  "quantum"   : 3,
+  "promedioT" : null,
+  "promedioW" : null,
+  "promedioP" : null,
+  "procesos": [
+    {
+      "etiqueta"      : "A",
+      "tiempoLlegada" : 0,
+      "t"             : 7,
+      "prioridad"     : null,
+      "F"             : null,
+      "T"             : null,
+      "W"             : null,
+      "P"             : null
+    },
+    {
+      "etiqueta"      : "B",
+      "tiempoLlegada" : 2,
+      "t"             : 4,
+      "prioridad"     : null,
+      "F"             : null,
+      "T"             : null,
+      "W"             : null,
+      "P"             : null
+    },
+    {
+      "etiqueta"      : "C",
+      "tiempoLlegada" : 4,
+      "t"             : 1,
+      "prioridad"     : null,
+      "F"             : null,
+      "T"             : null,
+      "W"             : null,
+      "P"             : null
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "algoritmo" : "PRIORIDADES",
+  "quantum"   : null,
+  "promedioT" : null,
+  "promedioW" : null,
+  "promedioP" : null,
+  "procesos"  : [
+    {
+      "etiqueta"      : "A",
+      "tiempoLlegada" : 0,
+      "t"             : 7,
+      "prioridad"     : 3,
+      "F"             : null,
+      "T"             : null,
+      "W"             : null,
+      "P"             : null
+    },
+    {
+      "etiqueta"      : "B",
+      "tiempoLlegada" : 2,
+      "t"             : 4,
+      "prioridad"     : 2,
+      "F"             : null,
+      "T"             : null,
+      "W"             : null,
+      "P"             : null
+    },
+    {
+      "etiqueta"      : "C",
+      "tiempoLlegada" : 4,
+      "t"             : 1,
+      "prioridad"     : 4,
+      "F"             : null,
+      "T"             : null,
+      "W"             : null,
+      "P"             : null
+    },
+    {
+      "etiqueta"      : "D",
+      "tiempoLlegada" : 5,
+      "t"             : 4,
+      "prioridad"     : 1,
+      "F"             : null,
+      "T"             : null,
+      "W"             : null,
+      "P"             : null
+    }
+  ]
+}

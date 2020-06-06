@@ -1,0 +1,45 @@
+// Codigos de FTP segun el RFC
+// Consultados en: https://www.rfc-es.org/rfc/rfc0959-es.txt
+
+char* code_110 = (char*)"110 Respuesta de marcador de reinicio.\n";
+char* code_120 = (char*)"120 El servicio estará en funcionamiento en nnn minutos.\n";
+char* code_125 = (char*)"125 La conexión de datos ya está abierta; comenzando transferencia.\n";
+char* code_150 = (char*)"150 Estado del fichero correcto; va a abrirse la conexión de datos.\n";
+char* code_200 = (char*)"200 Orden correcta.\n";
+char* code_211 = (char*)"211 Estado del sistema o respuesta de ayuda del sistema.\n";
+char* code_212 = (char*)"212 Estado del directorio.\n";
+char* code_213 = (char*)"213 Estado del fichero.\n";
+char* code_214 = (char*)"214 Mensaje de ayuda.\n";
+char* code_215 = (char*)"215 NOMBRE system type.\n";
+char* code_220 = (char*)"220 Servicio preparado para nuevo usuario.\n";
+char* code_221 = (char*)"221 Cerrando la conexión de control.\n";
+char* code_225 = (char*)"225 Conexión de datos abierta; no hay transferencia en proceso.\n";
+char* code_226 = (char*)"226 Cerrando la conexión de datos.\n";
+// char* code_227 = (char*)"227 Iniciando modo pasivo (h1,h2,h3,h4,p1,p2).\n";
+// char* code_227 = (char*)"227 Iniciando modo pasivo ( 127 0 0 1 4321 0 ).\n";
+// char* code_227 = (char*)"227 Iniciando modo pasivo ( 192.168.1.65 4321 ).\n";
+char* code_227 = (char*)"227 Iniciando modo pasivo";
+char* code_230 = (char*)"230 Usuario conectado, continúe.\n";
+char* code_250 = (char*)"250 La acción sobre fichero solicitado finalizó correctamente.\n";
+char* code_257 = (char*)"257 'NOMBRERUTA' creada.\n";
+char* code_331 = (char*)"331 Usuario OK, necesita contraseña.\n";
+char* code_332 = (char*)"332 Necesita una cuenta para entrar en el sistema.\n";
+char* code_532 = (char*)"532 Necesita una cuenta para almacenar ficheros.\n";
+char* code_350 = (char*)"350 La acción requiere más información.\n";
+char* code_421 = (char*)"421 Servicio no disponible, cerrando la conexión de control.\n";
+char* code_425 = (char*)"425 No se puede abrir la conexión de datos.\n";
+char* code_426 = (char*)"426 Conexión cerrada; transferencia interrumpida.\n";
+char* code_450 = (char*)"450 Acción no realizada.\n";
+char* code_451 = (char*)"451 Acción interrumpida. Error local.\n";
+char* code_452 = (char*)"452 Acción no realizada. Falta de espacio en el sistema de ficheros.\n";
+char* code_500 = (char*)"500 Error de sintaxis, comando no reconocido.\n";
+char* code_501 = (char*)"501 Error de sintaxis en parámetros o argumentos.\n";
+char* code_202 = (char*)"202 Orden no implementada, no necesaria en este sistema.\n";
+char* code_502 = (char*)"502 Orden no implementada.\n";
+char* code_503 = (char*)"503 Secuencia de órdenes incorrecta.\n";
+char* code_504 = (char*)"504 Orden no implementada para ese parámetro.\n";
+char* code_530 = (char*)"530 No está conectado.\n";
+char* code_550 = (char*)"550 Acción no realizada,\n";
+char* code_551 = (char*)"551 Acción interrumpida. Tipo de página desconocido.\n";
+char* code_552 = (char*)"552 Acción interrumpida.\n";
+char* code_553 = (char*)"553 Acción no realizada.\n";
